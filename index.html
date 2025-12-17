@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notes App</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+<div class="d-flex">
+
+  <!-- Sidebar -->
+  <aside class="sidebar p-3 d-flex flex-column">
+    <h4>Notes</h4>
+    <p class="small text-muted">Add new</p>
+
+    <button class="btn btn-primary w-100 mb-3" data-bs-toggle="modal" data-bs-target="#noteModal">
+      <i class="bi bi-plus-circle"></i> Add Note
+    </button>
+
+    <ul class="list-unstyled mt-3 side-link">
+      <li><i class="bi bi-calendar3 me-2"></i>Calendar</li>
+      <li><i class="bi bi-archive me-2"></i>Archive</li>
+      <li><i class="bi bi-trash me-2"></i>Trash</li>
+    </ul>
+
+    <div class="Upgrade mt-auto text-center">
+      <p class="mt-2">Unlimited folders & features</p>
+      <button class="btn btn-dark btn-sm">Upgrade Pro</button>
+    </div>
+  </aside>
+
+
+  <!-- Main -->
+  <main class="content p-4 flex-grow-1">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2>My Notes</h2>
+
+      <div class="d-flex gap-2 align-items-center">
+        <div class="search-bar d-flex align-items-center border rounded-pill px-3 py-1">
+          <i class="bi bi-search me-2"></i>
+          <input type="text" class="form-control border-0 shadow-none" placeholder="Search notes...">
+        </div>
+
+        <button id="darkToggle" class="btn btn-outline-dark rounded-pill">🌙</button>
+      </div>
+    </div>
+    <!-- Recent Folder -->
+<h5 class="fw-bold mb-3">Recent Folder</h5>
+
+<div class="row g-3 mb-5" id="folderList"></div>
+
+<!-- Add Folder Modal -->
+<div class="modal fade" id="folderModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Create Folder</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input id="folderName" class="form-control" placeholder="Folder name">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button id="saveFolder" class="btn btn-primary">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Notes -->
+    <div class="row g-3" id="notesList"></div>
+
+  </main>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="noteModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Add Note</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <input type="hidden" id="editIndex">
+        <input id="noteTitle" class="form-control mb-2" placeholder="Title">
+        <textarea id="noteText" class="form-control" rows="4" placeholder="Note..."></textarea>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button id="savebtn" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
