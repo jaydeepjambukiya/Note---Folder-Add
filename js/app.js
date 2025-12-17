@@ -1,6 +1,7 @@
-/* ================= NOTES ================= */
 
 let notes = JSON.parse(localStorage.getItem("notes")) || [];
+let trash = JSON.parse(localStorage.getItem("trash")) || [];
+
 
 const noteList   = document.getElementById("notesList");
 const savebtn    = document.getElementById("savebtn");
@@ -8,6 +9,8 @@ const noteTitle  = document.getElementById("noteTitle");
 const noteText   = document.getElementById("noteText");
 const editIndex  = document.getElementById("editIndex");
 const noteModal  = document.getElementById("noteModal");
+const trashList = document.getElementById("trashList");
+const trashCount = document.getElementById("trashCount");
 
 /* Display Notes */
 function displayNotes() {
@@ -73,12 +76,16 @@ function editNote(i) {
 
 /* Delete Note */
 function deleteNote(i) {
-  if (confirm("Delete this note?")) {
-    notes.splice(i, 1);
+  if (confirm("Move this note to Trash?")) {
+    trash.push(notes[i]);        // move to trash
+    notes.splice(i, 1);          
     localStorage.setItem("notes", JSON.stringify(notes));
+    localStorage.setItem("trash", JSON.stringify(trash));
+
     displayNotes();
   }
 }
+
 
 /* ================= DARK MODE ================= */
 
@@ -159,6 +166,42 @@ saveFolder.addEventListener("click", () => {
   displayFolders();
 });
 
+
+
+
+/* ================= TRASH ================= */
+
+// function displayTrash() {
+//   trashList.innerHTML = "";
+
+//   if (trash.length === 0) {
+//     trashList.innerHTML = `<p class="text-muted">Trash is empty</p>`;
+//     return;
+//   }
+//   else{
+//     trashList.innerHTML = `<h5 class="fw-bold">Trash</h5>`;
+//   }
+//   trash.forEach((t, i) => {
+//     trashList.innerHTML += `
+      
+//           <h6 class="mt-2">${t.title}</h6>
+//     `;
+//   });
+
+// }
+
+
+
+
+function updateTrashCount() {
+  trashCount.innerText = trash.length;
+}
+
+
+
+
 /* ================= INIT ================= */
 displayNotes();
 displayFolders();
+// displayTrash();
+updateTrashCount(); 
